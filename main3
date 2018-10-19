@@ -2307,7 +2307,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                 self.sf[l][m] = self.tabla_sf.item(l,m).text()
                 
         self.facturacion = np.empty((self.tabla_fact.rowCount(), self.tabla_fact.columnCount()), dtype=('U100'))
-        print(self.tabla_fact.rowCount())
+#        print(self.tabla_fact.rowCount())
         for n in range(self.tabla_fact.rowCount()):
             for o in range(self.tabla_fact.columnCount()):
 #                print(self.tabla_fact.item(n,o).text())
@@ -2321,36 +2321,34 @@ class Ui_MainWindow(QtWidgets.QWidget):
         correctos_y = []
         incorrectos = []
         incorrectos_y = []
-        
-        ic = 0
-        ii = 0
+
 
 
         for x in range (len(self.sf)):
-#        for x in range (2):
-            for y in range (ncols):
+#        for x in range (3):
+            for y in range (2):
                 id_sf = self.sf[x][12]
                 norden_sf = self.sf[x][11]
                 operador_sf = self.sf[x][5]
 #                order_sf = self.sf[x][4] #orden SF
                 indexsf= [i for i,x1 in enumerate(self.sf) for j,y1 in enumerate(x1) if y1 == id_sf]
-                print('indexsf', indexsf)
+#                print('indexsf', indexsf)
                 mrc_sf = float(self.sf[x][22])
                 norden_igual_list=list()
                 norden_dif_list =list()
                 mrc_suma_fact=0
                 if len(indexsf) == 1: #hay un solo CID
-                    print('un solo CID')
+#                    print('un solo CID')
                     indexfb= [i for i,x2 in enumerate(self.facturacion) for j,y2 in enumerate(x2) if y2 == id_sf] #Busca CID en Facturación
-                    print(indexfb)
+#                    print(indexfb)
                     
                     if len(indexfb) == 1: #un solo CID en Facturación
-                        print('un CID en Facturación')
+#                        print('un CID en Facturación')
                         norden_f = self.facturacion[indexfb[0]][4]
                         mrc_f = float(self.facturacion[indexfb[0]][20])
-                        print(norden_sf, norden_f)
+#                        print(norden_sf, norden_f)
                         if norden_f == norden_sf:
-                            print('norden igual')
+#                            print('norden igual')
                             
                             if mrc_sf == mrc_f:
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
@@ -2364,7 +2362,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     pais_f = self.facturacion[indexfb[0]][22]
                                     bw_f = self.facturacion[indexfb[0]][34]
                                     mrc_dif = abs(mrc_f-mrc_sf)
-                                    termino = self.sf[x][32]
+                                    termino = float(self.sf[x][30])
                                     term_s = termino * 30*24*60*60
                                     fecha_inicio = self.sf[x][10]
                                     fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
@@ -2373,12 +2371,11 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     correctos_y.append(pais_f); correctos_y.append(estado_f); correctos_y.append(bw_f); correctos_y.append(mrc_f); correctos_y.append('USD')
                                     correctos_y.append(self.sf[x][15]); correctos_y.append(self.sf[x][28]); correctos_y.append(mrc_sf); correctos_y.append(self.sf[x][21]); correctos_y.append(estado_sf)
                                     correctos_y.append(mrc_dif); correctos_y.append(fecha_inicio); correctos_y.append(termino); correctos_y.append(fecha_fin)
-                                      
-                                    correctos.append(correctos_y)
-                                    print(correctos)  
+                                    correctos.append(correctos_y) 
                                     correctos_y = []
+                                    self.sf = np.delete(self.sf, (x), axis=0)
                             else:
-                                print('Mrc distinto 1 id')
+#                                print('Mrc distinto 1 id')
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                                     estado_sf = 'Active'
                                 elif self.sf[x][17] == 'Disconnection':
@@ -2405,7 +2402,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y = []
                                     
                         else:
-                            print('norden distinto 1 orden')
+#                            print('norden distinto 1 orden')
                             if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                                 estado_sf = 'Active'
                             elif self.sf[x][17] == 'Disconnection':
@@ -2432,37 +2429,201 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                 incorrectos_y = []
                             
                     elif len(indexfb)>1: #Mas de 1 CID en Facturación
+#                        print('mas de un CID en facturacion')
                         for z in indexfb:
-                            norden_f =self.facturacion[z][20]
+                            norden_f =self.facturacion[z][4]
                             if norden_f == norden_sf:
                                 norden_igual_list.append(z)
+#                                print('Norden igual ', norden_igual_list)
                             else:
                                 norden_dif_list.append(z)
+#                                print(norden_dif_list)
                         if len(norden_igual_list) > 1:
                             for z in norden_igual_list:
-                                mrc_f=self.facturacion[z][20]
+                                mrc_f=float(self.facturacion[z][20])
                                 mrc_suma_fact =mrc_f+mrc_suma_fact
                             if mrc_suma_fact == mrc_sf:
-                                self.correctos
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_suma_fact-mrc_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    correctos_y.append(id_sf); correctos_y.append(norden_sf); correctos_y.append(operador_sf)
+                                    correctos_y.append(pais_f); correctos_y.append(estado_f); correctos_y.append(bw_f); correctos_y.append(mrc_suma_fact); correctos_y.append('USD')
+                                    correctos_y.append(self.sf[x][15]); correctos_y.append(self.sf[x][28]); correctos_y.append(mrc_sf); correctos_y.append(self.sf[x][21]); correctos_y.append(estado_sf)
+                                    correctos_y.append(mrc_dif); correctos_y.append(fecha_inicio); correctos_y.append(termino); correctos_y.append(fecha_fin)
+                                    correctos.append(correctos_y) 
+                                    correctos_y = []
                             else:
-                                self.incorrectos
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_f-mrc_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    incorrectos_y.append(id_sf); incorrectos_y.append(norden_sf); incorrectos_y.append(operador_sf)
+                                    incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_suma_fact); incorrectos_y.append('USD')
+                                    incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                    incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+    #                                print('Incorrectos', incorrectos_y)
+                                    incorrectos.append(incorrectos_y)
+    #                                    print(incorrectos)
+                                    incorrectos_y = []
                         elif len(norden_igual_list) == 1:
-                            mrc_f=self.facturacion[x][20]
+#                            print('1 solo n orden igual')
+                            mrc_f=float(self.facturacion[norden_igual_list[0]][20])
+#                            print('mrc f, sf ',mrc_f, mrc_sf)
                             if mrc_f == mrc_sf:
-                                self.correctos
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_f-mrc_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    correctos_y.append(id_sf); correctos_y.append(norden_sf); correctos_y.append(operador_sf)
+                                    correctos_y.append(pais_f); correctos_y.append(estado_f); correctos_y.append(bw_f); correctos_y.append(mrc_f); correctos_y.append('USD')
+                                    correctos_y.append(self.sf[x][15]); correctos_y.append(self.sf[x][28]); correctos_y.append(mrc_sf); correctos_y.append(self.sf[x][21]); correctos_y.append(estado_sf)
+                                    correctos_y.append(mrc_dif); correctos_y.append(fecha_inicio); correctos_y.append(termino); correctos_y.append(fecha_fin)
+                                    correctos.append(correctos_y) 
+                                    correctos_y = []
                             else:
-                                self.incorrectos
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_f-mrc_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    incorrectos_y.append(id_sf); incorrectos_y.append(norden_sf); incorrectos_y.append(operador_sf)
+                                    incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                    incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                    incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+    #                                print('Incorrectos', incorrectos_y)
+                                    incorrectos.append(incorrectos_y)
+    #                                    print(incorrectos)
+                                    incorrectos_y = []
                         elif len(norden_igual_list) == 0:
-                            self.incorrectos 
-                        
-                        
+                            if len(norden_dif_list) >= 1:
+                                for z  in norden_dif_list:
+                                    if y==1:
+                                        mrc_f=float(self.facturacion[z][20])
+                                        norden_f=self.facturacion[z][4]
+                                        fechastr = self.sf[x][10]
+                                        fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                        estado_f = self.facturacion[z][9]
+                                        pais_f = self.facturacion[z][22]
+                                        bw_f = self.facturacion[z][34]
+                                        mrc_dif = abs(mrc_f-mrc_sf)
+                                        termino = float(self.sf[x][30])
+                                        term_s = termino * 30*24*60*60
+                                        fecha_inicio = self.sf[x][10]
+                                        fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                        fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                        incorrectos_y.append(id_sf); incorrectos_y.append(norden_f); incorrectos_y.append(operador_sf)
+                                        incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                        incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                        incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+        #                                print('Incorrectos', incorrectos_y)
+                                        incorrectos.append(incorrectos_y)
+        #                                    print(incorrectos)
+                                        incorrectos_y = []
+                            else:
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                
+                                if y == 1:
+                                    mrc_f = int(0)
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = 'NA'
+                                    pais_f = 'NA'
+                                    bw_f = 'NA'
+                                    mrc_dif = abs(mrc_f-mrc_sf)
+                                    termino = float( self.sf[x][30])
+                                    term_s = termino *30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    incorrectos_y.append(id_sf); incorrectos_y.append(norden_sf); incorrectos_y.append(operador_sf)
+                                    incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                    incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                    incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+        #                            print('Incorrectos', incorrectos_y)
+                                    incorrectos.append(incorrectos_y)
+        #                            print(correctos)
+                                    incorrectos_y = [] 
                         
                         if len(norden_dif_list) >= 1:
-                            for z  in norden_dif_list:
-                                self.incorrectos
+                                for z  in norden_dif_list:
+                                    if y == 1:
+                                        mrc_f=float(self.facturacion[z][20])
+                                        norden_f=self.facturacion[z][4]
+                                        fechastr = self.sf[x][10]
+                                        fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                        estado_f = self.facturacion[z][9]
+                                        pais_f = self.facturacion[z][22]
+                                        bw_f = self.facturacion[z][34]
+                                        mrc_dif = abs(mrc_f-mrc_sf)
+                                        termino = float(self.sf[x][30])
+                                        term_s = termino * 30*24*60*60
+                                        fecha_inicio = self.sf[x][10]
+                                        fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                        fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                        incorrectos_y.append(id_sf); incorrectos_y.append(norden_f); incorrectos_y.append(operador_sf)
+                                        incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                        incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                        incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+        #                                print('Incorrectos', incorrectos_y)
+                                        incorrectos.append(incorrectos_y)
+        #                                    print(incorrectos)
+                                        incorrectos_y = []
+                        
+                        
                         
                     elif len(indexfb) == 0:
-                        print('CID Not Found')
+#                        print('CID Not Found')
                         if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                             estado_sf = 'Active'
                         elif self.sf[x][17] == 'Disconnection':
@@ -2490,76 +2651,344 @@ class Ui_MainWindow(QtWidgets.QWidget):
 #                            print(correctos)
                             incorrectos_y = []
                         
-                elif len(indexsf) > 1: #Mas de un CID
-                    print('mas de 1 CID')
+                elif len(indexsf) > 1: #Mas de un CID SF
+#                    print('mas de 1 CID')
                     fecha_max = 0
-                    mrc_sum_sf = 0
+                    mrc_suma_sf = 0
                     nrc_suma_sf = 0
                     for z in indexsf:
-                        fechastr = self.sf[z][10]
-#                        print(fechastr)
+                        fechastr = str(self.sf[z][10])
+                        print('date', fechastr)
                         fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
                         if fechastamp > fecha_max:
                             fecha_max= fechastamp
                             fecha_max_index = z
                     orden= self.sf[fecha_max_index][4]
                     index_fecha = [i for i,x3 in enumerate(self.sf) for j,y3 in enumerate(x3) if y3 == orden]
+                    fecha_max_str = datetime.datetime.utcfromtimestamp(fecha_max).strftime('%d/%m/%Y')
                     for z in index_fecha:
+#                        print(id_sf, self.sf[z][12])
                         if id_sf ==  self.sf[z][12]:
-                            norden_sf = self.sf[z][11]
-                            if self.sf[z][10] == fecha_max:
-                                valor = float(self.sf[z][22])
-                                mrc_sum_sf = valor + mrc_sum_sf  
-                                nrc_sf= float(self.sf[z][24])
-                                if nrc_sf != 0:
-                                    nrc_suma_sf = nrc_suma_sf + nrc_sf
-                                    nrc_sf = self.sf[z][24]
-                                else:
-                                    if nrc_suma_sf==0:
-                                        nrc_sf = float(0)
+#                            print(self.sf[z][10],fecha_max_str)
+                            if norden_sf == self.sf[z][11]:
+                                if self.sf[z][10] == fecha_max_str:
+                                    valor = float(self.sf[z][22])
+#                                    print(valor)
+                                    mrc_suma_sf = valor + mrc_suma_sf  
+#                                    print(mrc_suma_sf)
+                                    nrc_sf= float(self.sf[z][24])
+                                    if nrc_sf != 0:
+                                        nrc_suma_sf = nrc_suma_sf + nrc_sf
+                                        nrc_sf = self.sf[z][24]
+                                    else:
+                                        if nrc_suma_sf==0:
+                                            nrc_sf = float(0)
                     
                     indexfb= [i for i,x2 in enumerate(self.facturacion) for j,y2 in enumerate(x2) if y2 == id_sf] #Busca CID en Facturación
-                    
+#                    print(indexfb)
                     if len(indexfb) == 1: #un solo CID en Facturación
                         norden_f = self.facturacion[indexfb[0]][4]
+                        mrc_f = float(self.facturacion[indexfb[0]][20])
                         if norden_f == norden_sf:
-                            mrc_f = self.facturacion[indexfb[0]][20]
-                            if nrc_suma_sf == mrc_f:
-                                self.correctos
+                            if mrc_suma_sf == mrc_f:
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_f-mrc_suma_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    correctos_y.append(id_sf); correctos_y.append(norden_sf); correctos_y.append(operador_sf)
+                                    correctos_y.append(pais_f); correctos_y.append(estado_f); correctos_y.append(bw_f); correctos_y.append(mrc_f); correctos_y.append('USD')
+                                    correctos_y.append(self.sf[x][15]); correctos_y.append(self.sf[x][28]); correctos_y.append(mrc_suma_sf); correctos_y.append(self.sf[x][21]); correctos_y.append(estado_sf)
+                                    correctos_y.append(mrc_dif); correctos_y.append(fecha_inicio); correctos_y.append(termino); correctos_y.append(fecha_fin)
+                                    correctos.append(correctos_y) 
+                                    correctos_y = []
                             else:
-                                self.incorrectos
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_f-mrc_suma_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    incorrectos_y.append(id_sf); incorrectos_y.append(norden_sf); incorrectos_y.append(operador_sf)
+                                    incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                    incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_suma_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                    incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+    #                                print('Incorrectos', incorrectos_y)
+                                    incorrectos.append(incorrectos_y)
+    #                                    print(incorrectos)
+                                    incorrectos_y = []
                         else:
-                            self.incorrectos
+                            if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                estado_sf = 'Active'
+                            elif self.sf[x][17] == 'Disconnection':
+                                estado_sf = 'Disconnected'
+                            if y == 1:
+                                fechastr = self.sf[x][10]
+                                fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                estado_f = self.facturacion[indexfb[0]][9]
+                                pais_f = self.facturacion[indexfb[0]][22]
+                                bw_f = self.facturacion[indexfb[0]][34]
+                                mrc_dif = abs(mrc_f-mrc_sf)
+                                termino = float(self.sf[x][30])
+                                term_s = termino * 30*24*60*60
+                                fecha_inicio = self.sf[x][10]
+                                fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                incorrectos_y.append(id_sf); incorrectos_y.append(norden_sf); incorrectos_y.append(operador_sf)
+                                incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+#                                print('Incorrectos', incorrectos_y)
+                                incorrectos.append(incorrectos_y)
+#                                    print(incorrectos)
+                                incorrectos_y = []
+                            
                     elif len(indexfb)>1: #Mas de 1 CID en Facturación
                         for z in indexfb:
-                            norden_f =self.facturacion[z][20]
+                            norden_f =self.facturacion[z][4]
+#                            print('norden f, sf', norden_f, norden_sf)
                             if norden_f == norden_sf:
                                 norden_igual_list.append(z)
                             else:
                                 norden_dif_list.append(z)
+#                        print('norden igual lista', norden_igual_list)
                         if len(norden_igual_list) > 1:
                             for z in norden_igual_list:
-                                mrc_f=self.facturacion[z][20]
+                                mrc_f=float(self.facturacion[z][20])
                                 mrc_suma_fact =mrc_f+mrc_suma_fact
-                            if mrc_suma_fact == nrc_suma_sf:
-                                self.correctos
+#                            print('mrc fact, sf', mrc_suma_fact,mrc_suma_sf)
+                            if mrc_suma_fact == mrc_suma_sf:
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_suma_fact-mrc_suma_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    correctos_y.append(id_sf); correctos_y.append(norden_sf); correctos_y.append(operador_sf)
+                                    correctos_y.append(pais_f); correctos_y.append(estado_f); correctos_y.append(bw_f); correctos_y.append(mrc_suma_fact); correctos_y.append('USD')
+                                    correctos_y.append(self.sf[x][15]); correctos_y.append(self.sf[x][28]); correctos_y.append(mrc_suma_sf); correctos_y.append(self.sf[x][21]); correctos_y.append(estado_sf)
+                                    correctos_y.append(mrc_dif); correctos_y.append(fecha_inicio); correctos_y.append(termino); correctos_y.append(fecha_fin)
+                                    correctos.append(correctos_y) 
+                                    correctos_y = []
+                                
                             else:
-                                self.incorrectos
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_f-mrc_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    incorrectos_y.append(id_sf); incorrectos_y.append(norden_sf); incorrectos_y.append(operador_sf)
+                                    incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_suma_fact); incorrectos_y.append('USD')
+                                    incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_suma_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                    incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+    #                                print('Incorrectos', incorrectos_y)
+                                    incorrectos.append(incorrectos_y)
                         elif len(norden_igual_list) == 1:
-                            mrc_f=self.facturacion[x][20]
-                            if mrc_f == mrc_sf:
-                                self.correctos
+                            mrc_f=float(self.facturacion[norden_igual_list[0]][20])
+#                            print('mrc f, sf ',mrc_f, mrc_suma_sf)
+                            if mrc_f == mrc_suma_sf:
+#                                print('mrc f, sf ',mrc_f, mrc_suma_sf)
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_f-mrc_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    correctos_y.append(id_sf); correctos_y.append(norden_sf); correctos_y.append(operador_sf)
+                                    correctos_y.append(pais_f); correctos_y.append(estado_f); correctos_y.append(bw_f); correctos_y.append(mrc_f); correctos_y.append('USD')
+                                    correctos_y.append(self.sf[x][15]); correctos_y.append(self.sf[x][28]); correctos_y.append(mrc_suma_sf); correctos_y.append(self.sf[x][21]); correctos_y.append(estado_sf)
+                                    correctos_y.append(mrc_dif); correctos_y.append(fecha_inicio); correctos_y.append(termino); correctos_y.append(fecha_fin)
+                                    correctos.append(correctos_y) 
+                                    correctos_y = []
+                                
+                                
                             else:
-                                self.incorrectos
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                if y == 1:
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[indexfb[0]][9]
+                                    pais_f = self.facturacion[indexfb[0]][22]
+                                    bw_f = self.facturacion[indexfb[0]][34]
+                                    mrc_dif = abs(mrc_f-mrc_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    incorrectos_y.append(id_sf); incorrectos_y.append(norden_sf); incorrectos_y.append(operador_sf)
+                                    incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                    incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_suma_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                    incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+    #                                print('Incorrectos', incorrectos_y)
+                                    incorrectos.append(incorrectos_y)
+                                
                         elif len(norden_igual_list) == 0:
-                            self.incorrectos 
+                            if len(norden_dif_list) >= 1:
+                                for z  in norden_dif_list:
+                                    if y==1:
+                                        mrc_f=float(self.facturacion[z][20])
+                                        norden_f=self.facturacion[z][4]
+                                        fechastr = self.sf[x][10]
+                                        fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                        estado_f = self.facturacion[z][9]
+                                        pais_f = self.facturacion[z][22]
+                                        bw_f = self.facturacion[z][34]
+                                        mrc_dif = abs(mrc_f-mrc_sf)
+                                        termino = float(self.sf[x][30])
+                                        term_s = termino * 30*24*60*60
+                                        fecha_inicio = self.sf[x][10]
+                                        fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                        fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                        incorrectos_y.append(id_sf); incorrectos_y.append(norden_f); incorrectos_y.append(operador_sf)
+                                        incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                        incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                        incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+        #                                print('Incorrectos', incorrectos_y)
+                                        incorrectos.append(incorrectos_y)
+        #                                    print(incorrectos)
+                                        incorrectos_y = []
+                            else:
+                                if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                                    estado_sf = 'Active'
+                                elif self.sf[x][17] == 'Disconnection':
+                                    estado_sf = 'Disconnected'
+                                
+                                if y == 1:
+                                    mrc_f = int(0)
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = 'NA'
+                                    pais_f = 'NA'
+                                    bw_f = 'NA'
+                                    mrc_dif = abs(mrc_f-mrc_sf)
+                                    termino = float( self.sf[x][30])
+                                    term_s = termino *30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    incorrectos_y.append(id_sf); incorrectos_y.append(norden_sf); incorrectos_y.append(operador_sf)
+                                    incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                    incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                    incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+        #                            print('Incorrectos', incorrectos_y)
+                                    incorrectos.append(incorrectos_y)
+        #                            print(correctos)
+                                    incorrectos_y = [] 
                         
                         
                         
                         if len(norden_dif_list) >= 1:
                             for z  in norden_dif_list:
-                                self.incorrectos
+                                if y == 1:
+                                    mrc_f=float(self.facturacion[z][20])
+                                    norden_f=self.facturacion[z][4]
+                                    fechastr = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                                    estado_f = self.facturacion[z][9]
+                                    pais_f = self.facturacion[z][22]
+                                    bw_f = self.facturacion[z][34]
+                                    mrc_dif = abs(mrc_f-mrc_sf)
+                                    termino = float(self.sf[x][30])
+                                    term_s = termino * 30*24*60*60
+                                    fecha_inicio = self.sf[x][10]
+                                    fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                                    fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                                    incorrectos_y.append(id_sf); incorrectos_y.append(norden_f); incorrectos_y.append(operador_sf)
+                                    incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                                    incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                                    incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+    #                                print('Incorrectos', incorrectos_y)
+                                    incorrectos.append(incorrectos_y)
+    #                                    print(incorrectos)
+                                    incorrectos_y = []
                     
+                    elif len(indexfb) == 0:
+#                        print('C1ID Not Found')
+                        if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
+                            estado_sf = 'Active'
+                        elif self.sf[x][17] == 'Disconnection':
+                            estado_sf = 'Disconnected'
+                        
+                        if y == 1:
+                            mrc_f = int(0)
+                            fechastr = self.sf[x][10]
+                            fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
+                            estado_f = 'NA'
+                            pais_f = 'NA'
+                            bw_f = 'NA'
+                            mrc_dif = abs(mrc_f-mrc_sf)
+                            termino = float( self.sf[x][30])
+                            term_s = termino *30*24*60*60
+                            fecha_inicio = self.sf[x][10]
+                            fechastamp = int(datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y').timestamp()) + term_s
+                            fecha_fin = datetime.datetime.utcfromtimestamp(fechastamp).strftime('%d/%m/%Y')
+                            incorrectos_y.append(id_sf); incorrectos_y.append(norden_sf); incorrectos_y.append(operador_sf)
+                            incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
+                            incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
+                            incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
+#                            print('Incorrectos', incorrectos_y)
+                            incorrectos.append(incorrectos_y)
+#                            print(correctos)
+                            incorrectos_y = []
+                    
+
+                                    
 
                     
 #            print(id_sf, norden_sf, order_sf)
