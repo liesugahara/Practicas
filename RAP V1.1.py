@@ -30,7 +30,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
         self.scrollArea.setFrameShape(QtWidgets.QFrame.NoFrame)
-#        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
@@ -284,10 +283,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.id_base.setAlignment(QtCore.Qt.AlignCenter)
         self.id_base.setObjectName("id_base")
         self.gridLayout.addWidget(self.id_base, 2, 2, 1, 1)
-#        self.radio_regional = QtWidgets.QRadioButton(self.scrollAreaWidgetContents)
-#        self.radio_regional.setChecked(False)
-#        self.radio_regional.setObjectName("radio_regional")
-#        self.gridLayout.addWidget(self.radio_regional, 23, 3, 1, 1)
         self.norden_fact = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.norden_fact.setMinimumSize(QtCore.QSize(221, 31))
         self.norden_fact.setMaximumSize(QtCore.QSize(221, 31))
@@ -319,16 +314,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.nrc_sf.setAlignment(QtCore.Qt.AlignCenter)
         self.nrc_sf.setObjectName("nrc_sf")
         self.gridLayout.addWidget(self.nrc_sf, 24, 2, 1, 1)
-#        self.select_fact = QtWidgets.QComboBox(self.scrollAreaWidgetContents)
-#        self.select_fact.setMinimumSize(QtCore.QSize(151, 22))
-#        self.select_fact.setMaximumSize(QtCore.QSize(151, 22))
-#        self.select_fact.setObjectName("select_fact")
-#        self.select_fact.addItem("")
-#        self.select_fact.setItemText(0, "")
-#        self.select_fact.addItem("")
-#        self.select_fact.addItem("")
-#        self.select_fact.addItem("")
-#        self.gridLayout.addWidget(self.select_fact, 10, 3, 1, 1)
         self.exportar_fact = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.exportar_fact.setMinimumSize(QtCore.QSize(93, 28))
         self.exportar_fact.setMaximumSize(QtCore.QSize(93, 28))
@@ -379,12 +364,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.label_21.setAlignment(QtCore.Qt.AlignCenter)
         self.label_21.setObjectName("label_21")
         self.gridLayout.addWidget(self.label_21, 10, 1, 1, 1)
-#        self.radio_colombia = QtWidgets.QRadioButton(self.scrollAreaWidgetContents)
-#        self.radio_colombia.setCheckable(True)
-#        self.radio_colombia.setChecked(False)
-#        self.radio_colombia.setAutoExclusive(True)
-#        self.radio_colombia.setObjectName("radio_colombia")
-#        self.gridLayout.addWidget(self.radio_colombia, 22, 3, 1, 1)
         self.label_32 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.label_32.setMinimumSize(QtCore.QSize(71, 31))
         self.label_32.setMaximumSize(QtCore.QSize(71, 31))
@@ -528,7 +507,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.actualizar_button.setMaximumSize(QtCore.QSize(93, 28))
         self.actualizar_button.setObjectName("actualizar_button")
         self.gridLayout.addWidget(self.groupBox, 26, 1, 1, 2)
-        
         self.tabla_base.raise_()
         self.label_3.raise_()
         self.label_2.raise_()
@@ -571,8 +549,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.nrc_sf.raise_()
         self.label_36.raise_()
         self.select_sf.raise_()
-#        self.radio_colombia.raise_()
-#        self.radio_regional.raise_()
         self.norden_fact.raise_()
         self.label_25.raise_()
         self.id_fact.raise_()
@@ -586,55 +562,38 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.nrc_fact.raise_()
         self.label_17.raise_()
         self.exportar_fact.raise_()
-#        self.select_fact.raise_()
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.gridLayout_2.addWidget(self.scrollArea, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1580, 26))
         self.menubar.setObjectName("menubar")
-        
         self.menuMenu = QtWidgets.QMenu(self.menubar)
         self.menuMenu.setObjectName("menuMenu")
-        
         self.menuCargar = QtWidgets.QMenu(self.menubar)
-        self.menuCargar.setObjectName("menuCargar")
-        
+        self.menuCargar.setObjectName("menuCargar")        
         self.menuSettings = QtWidgets.QMenu(self.menubar)
-        self.menuSettings.setObjectName("menuSettings")
-        
+        self.menuSettings.setObjectName("menuSettings")       
         self.menuRegion = QtWidgets.QMenu(self.menuSettings)
         self.menuRegion.setObjectName("menuRegion")
-        MainWindow.setMenuBar(self.menubar)
-
-        
-        
+        MainWindow.setMenuBar(self.menubar)       
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        
-        
         self.actionCargar_Archivo_Base = QtWidgets.QAction(MainWindow)
         self.actionCargar_Archivo_Base.setObjectName("actionCargar_Archivo_Base")
-        
         self.actionCargar_Archivo_Facturacion = QtWidgets.QAction(MainWindow)
         self.actionCargar_Archivo_Facturacion.setObjectName("actionCargar_Archivo_Facturacion")
-        
         self.actionCargar_Archivo_Salesforce = QtWidgets.QAction(MainWindow)
         self.actionCargar_Archivo_Salesforce.setObjectName("actionCargar_Archivo_Salesforce")
-        
         self.actionCambiar_Usuario = QtWidgets.QAction(MainWindow)
         self.actionCambiar_Usuario.setObjectName("actionCambiar_Usuario")
-        
         self.actionExportar_todo = QtWidgets.QAction(MainWindow)
         self.actionExportar_todo.setObjectName("actionExportar_todo")
-        
         self.actionSalir = QtWidgets.QAction(MainWindow)
         self.actionSalir.setObjectName("actionSalir")
-        
         self.actionManual = QtWidgets.QAction(MainWindow)
         self.actionManual.setObjectName("actionManual")
-        
         self.actionSeleccionar_Fecha = QtWidgets.QAction(MainWindow)
         self.actionSeleccionar_Fecha.setCheckable(True)
         self.actionSeleccionar_Fecha.setObjectName("actionSeleccionar_Fecha")
@@ -644,38 +603,27 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.actionColombia = QtWidgets.QAction(MainWindow)
         self.actionColombia.setCheckable(True)
         self.actionColombia.setObjectName("actionColombia")
-
-        
-        
         self.menuMenu.addAction(self.actionCambiar_Usuario)
         self.menuMenu.addAction(self.actionExportar_todo)
         self.menuMenu.addAction(self.actionManual)
         self.menuMenu.addAction(self.actionSalir)
-        
         self.menuCargar.addAction(self.actionCargar_Archivo_Base)
         self.menuCargar.addAction(self.actionCargar_Archivo_Facturacion)
         self.menuCargar.addAction(self.actionCargar_Archivo_Salesforce)
         self.menubar.addAction(self.menuMenu.menuAction())
         self.menubar.addAction(self.menuCargar.menuAction())
-        
-        
         self.menuRegion.addAction(self.actionRegional)
         self.menuRegion.addAction(self.actionColombia)
-        
         self.menuSettings.addAction(self.actionSeleccionar_Fecha)
         self.menuSettings.addAction(self.menuRegion.menuAction())
         self.menubar.addAction(self.menuSettings.menuAction())
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
         self.buscartodo_button = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.buscartodo_button.setMinimumSize(QtCore.QSize(93, 28))
         self.buscartodo_button.setMaximumSize(QtCore.QSize(93, 28))
         self.buscartodo_button.setText('Buscar Todo')
         self.gridLayout.addWidget(self.buscartodo_button, 26, 3, 1, 2)
-
-        
         """
 # =============================================================================
 #         END
@@ -686,10 +634,8 @@ class Ui_MainWindow(QtWidgets.QWidget):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/Register/logo2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
-#        MainWindow.setWindowState(QtCore.Qt.WindowMaximized)
         MainWindow.setWindowState(MainWindow.windowState() & ~QtCore.Qt.WindowMinimized | QtCore.Qt.WindowActive)
         MainWindow.setFocus(QtCore.Qt.PopupFocusReason)
-#        MainWindow.activateWindow()
         MainWindow.raise_()
         self.actionCargar_Archivo_Base.triggered.connect(self.getxlsbase)
         self.actionCargar_Archivo_Facturacion.triggered.connect(self.getxlsfacturacion)
@@ -697,8 +643,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.actionSeleccionar_Fecha.triggered.connect(self.openPopUp)
         self.actualizar_button.clicked.connect(self.actualizarsf)
         self.tabla_sf.cellClicked.connect(self.cellselect)
-#        self.actionRegional.triggered.connect(self.fregional)
-#        self.actionColombia.triggered.connect(self.fcolombia)
         self.select_sf.currentIndexChanged.connect(self.selectsf)
         self.exportar_base.clicked.connect(self.exp_base)
         self.buscartodo_button.clicked.connect(self.buscar_todo)
@@ -1192,7 +1136,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         if 'date_select' in globals():
             self.statusbar.showMessage('Periodo seleccionado: %i/%i' %(date_select.month, date_select.year))
         filePath_base, _ = QtWidgets.QFileDialog.getOpenFileName(self, 'Select file', './', 'Excel Files (*.xls *.xlsx)')
-#        filePath_base = r'C:/Users/Lie/Documents/Uninorte/C&W/Proyecto RAP/Archivo Base 1 Agosto 2017 v2.0.xlsx'
         base = xlrd.open_workbook(filePath_base)
         self.hoja_base = base.sheet_by_index(0)
         self.datab = [[self.hoja_base.cell_value(r, c) for c in range(self.hoja_base.ncols)] for r in range(self.hoja_base.nrows)]
@@ -1241,7 +1184,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         
     def getxlsfacturacion(self):
         filePath_facturacion, _ = QtWidgets.QFileDialog.getOpenFileName(self, 'Select file', './', 'Excel Files (*.xls *.xlsx)')
-#        filePath_facturacion = r'C:/Users/Lie/Documents/Uninorte/C&W/Proyecto RAP/MRR sep 1 2018.xlsx'
         facturacion = xlrd.open_workbook(filePath_facturacion)
         self.hoja_facturacion = facturacion.sheet_by_index(0)
         self.dataf = [[self.hoja_facturacion.cell_value(r, c) for c in range(self.hoja_facturacion.ncols)] for r in range(self.hoja_facturacion.nrows)]
@@ -1345,14 +1287,12 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                 nvalor = QtWidgets.QTableWidgetItem(valor)
                                 self.tabla_fact.setItem(i-1,j, nvalor)
         self.tabla_fact.resizeColumnsToContents()
-#        if hasattr(self, 'hoja_sf'):
-#            self.actionSeleccionar_Fecha.setChecked(False)
+
 
 
 
     def getxlssf(self):
         filePath_sf, _ = QtWidgets.QFileDialog.getOpenFileName(self, 'Select file', './', 'Excel Files (*.xls *.xlsx)')
-#        filePath_sf = r'C:/Users/Lie/Documents/Uninorte/C&W/Proyecto RAP/Archivo SF.xls.xlsx'
         sf = xlrd.open_workbook(filePath_sf)
         self.hoja_sf = sf.sheet_by_index(0)
         self.datasf = [[self.hoja_sf.cell_value(r, c) for c in range(self.hoja_sf.ncols)] for r in range(self.hoja_sf.nrows)]
@@ -1501,9 +1441,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     self.tabla_sf.setItem(l,j, nvalor)
                             self.tabla_sf.setHorizontalHeaderItem(j, QtWidgets.QTableWidgetItem(str(self.hoja_sf.cell(0,j).value)))
                         l=l+1
-    #                self.tabla_sf.setHorizontalHeaderItem(j, QtWidgets.QTableWidgetItem(str(self.hoja_sf.cell(i,j).value)))
-                
-#                self.tabla_sf.setRowCount(len(self.filtered_date_index))
+    #                
             else:
                 #no fecha - si region
                 if self.actionRegional.isChecked(): #despliega info filtrada por regional
@@ -1613,12 +1551,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     valor = str(self.hoja_sf.cell(i,j).value)
                                     nvalor = QtWidgets.QTableWidgetItem(valor)
                                     self.tabla_sf.setItem(i-1,j, nvalor)
-
-        
-        
-        
-        
-        
         else: 
             for i in range(num_row):
                 for j in range(num_col):
@@ -1644,13 +1576,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
                             nvalor = QtWidgets.QTableWidgetItem(valor)
                             self.tabla_sf.setItem(i-1,j, nvalor)
         self.tabla_sf.resizeColumnsToContents()
-        
         self.tabla_busquedasf = np.empty((self.tabla_sf.rowCount(), self.tabla_sf.columnCount()), dtype=('U100'))
         for x in range(self.tabla_sf.rowCount()):
                for y in range(self.tabla_sf.columnCount()):
                    self.tabla_busquedasf[x][y] = self.tabla_sf.item(x,y).text()
-#        if hasattr(self, 'hoja_facturacion'):
-#            self.actionSeleccionar_Fecha.setChecked(False)
 
 
     '''
@@ -1683,20 +1612,14 @@ class Ui_MainWindow(QtWidgets.QWidget):
             for y in range(self.tabla_sf.columnCount()):
                 self.tabla_busquedasf[x][y] = self.tabla_sf.item(x,y).text()
                 self.tabla_sf.item(x,y).setBackground(QtGui.QColor(255,255,255))
-
-        
-        
         indexsf= [i for i,x in enumerate(self.tabla_busquedasf) for j,y in enumerate(x) if y == self.idsf]
         indexsfo= [i for i,x in enumerate(self.tabla_busquedasf) for j,y in enumerate(x) if y == self.ordersf]
-
         
         if len(indexsf) == 1:
             nordensf = self.tabla_sf.item(self.row_sf,11)
             self.nordensf = nordensf.text()
             idsf = self.tabla_sf.item(self.row_sf, 12)
             self.idsf = idsf.text()
-            
-            
             operadorsf = self.tabla_sf.item(self.row_sf, 5)
             self.operadorsf = operadorsf.text()
             lenstrsf = len(self.operadorsf)//2
@@ -1714,12 +1637,8 @@ class Ui_MainWindow(QtWidgets.QWidget):
                     z1sf,z2sf= self.operadorsf[:ysf], self.operadorsf[1+ysf:]
                     self.prtsf = z1sf + '\n' + z2sf
                     self.operador_sf.setText(self.prtsf)
-            
             else:
                 self.operador_sf.setText(self.operadorsf)
-        
-            
-            
             terminosf = self.tabla_sf.item(self.row_sf, 30)
             self.terminosf = terminosf.text()
             mrcsf = self.tabla_sf.item(self.row_sf, 22)
@@ -1728,16 +1647,13 @@ class Ui_MainWindow(QtWidgets.QWidget):
             self.nrcsf = nrcsf.text()
             self.norden_sf.setText(self.nordensf)
             self.id_sf.setText(self.idsf)
-            
             self.termino_sf.setText(self.terminosf)
             self.mrc_sf.setText(self.mrcsf)
             self.nrc_sf.setText(self.nrcsf)
-            
         elif len(indexsf) > 1:
             fecha_max=0
             self.mrcsumsf=0
             nrcsuma=0
-            
             for i in indexsf:
                 for j in range(self.tabla_sf.columnCount()):
                     self.tabla_sf.item(i,j).setBackground(QtGui.QColor(255,255,0))
@@ -1754,9 +1670,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                     fecha_max_index = i
             orden= self.tabla_busquedasf[fecha_max_index][4] 
             index_fecha = [i for i,x in enumerate(self.tabla_busquedasf) for j,y in enumerate(x) if y == orden]
-            indexsf= [i for i,x in enumerate(self.tabla_busquedasf) for j,y in enumerate(x) if y == self.idsf]
-
-            
+            indexsf= [i for i,x in enumerate(self.tabla_busquedasf) for j,y in enumerate(x) if y == self.idsf]      
             for i in range (len(index_fecha)):
                 if self.idsf ==  self.tabla_busquedasf[index_fecha[i]][12]:
                     if self.nordensf == self.tabla_busquedasf[index_fecha[i]][11]:
@@ -1798,17 +1712,11 @@ class Ui_MainWindow(QtWidgets.QWidget):
             
             else:
                 self.operador_sf.setText(self.operadorsf)
-        
-            
-            
+                
             terminosf = self.tabla_busquedasf[fecha_max_index][30]
             self.terminosf = str(terminosf)
-#            mrcsf = self.tabla_sf.item(self.row_sf, 22)
-#            self.mrcsf = mrcsf.text()
-            
             self.norden_sf.setText(self.nordensf)
             self.id_sf.setText(self.idsf)
-            
             self.termino_sf.setText(self.terminosf)
             self.mrc_sf.setText(self.mrcsumsf)
             self.nrc_sf.setText(self.nrcsf)
@@ -1816,8 +1724,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
 # =============================================================================
 #         BÚSQUEDA DE ID EN FACTURACION
 # =============================================================================
-        
-#        indexf= [(i,j) for i,x in enumerate(self.dataf) for j,y in enumerate(x) if y == self.idsf]
         
         self.tabla_busqueda = np.empty((self.tabla_fact.rowCount(), self.tabla_fact.columnCount()), dtype=('U100'))
 
@@ -1836,7 +1742,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         
         if len(indexfb) == 1:
             self.tabla_fact.scrollToItem(self.tabla_fact.selectRow(indexfb[0][0]))
-#            self.tabla_fact.scrollToItem(self.tabla_fact.selectRow(indexfb[0][0]-1))
             nordenf = self.tabla_fact.item(indexfb[0][0], 4)
             self.nordenf = nordenf.text()
             mrcf = self.tabla_fact.item(indexfb[0][0], 20)
@@ -1848,7 +1753,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
                 self.norden_fact.setText('Las órdenes no coinciden')
                 self.mrc_fact.setText('Las órdenes no coinciden')
 
-
             if self.nordenf == self.nordensf:
                 self.mrc_fact.setText(self.mrcf)
             else:
@@ -1856,8 +1760,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
             
             idf = self.tabla_fact.item(indexfb[0][0], 16)
             self.idf = idf.text()
-            
-            
+
             operadorf = self.tabla_fact.item(indexfb[0][0], 2)
             self.operadorf = operadorf.text()
             
@@ -1881,29 +1784,14 @@ class Ui_MainWindow(QtWidgets.QWidget):
             else:
                 self.operador_fact.setText(self.operadorf)
             
-            
-            
             terminof = self.tabla_fact.item(indexfb[0][0], 5)
             self.terminof = terminof.text()
-            
-        
-
-                
-                
-            
-            
-#            nrcb = self.tabla_fact.item(indexf[0][0]-1, 20)
             self.nrcf ='N/A'
-#            self.nrcb = nrcb.text()
-#            self.norden_fact.setText(self.nordenf)
             self.id_fact.setText(self.idf)
             self.termino_fact.setText(self.terminof)
-#            self.mrc_fact.setText(self.mrcf)
             self.nrc_fact.setText(self.nrcf)
             
         elif len(indexfb) == 0:
-            
-#            self.tabla_fact.scrollToItem(self.tabla_fact.selectRow(indexf[0][0]-1))
             self.norden_fact.setText('Not Found')
             self.id_fact.setText('')
             self.operador_fact.setText('')
@@ -1916,10 +1804,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
             for i in indexf1:
                 for j in range(self.tabla_fact.columnCount()):
                     self.tabla_fact.item(i,j).setBackground(QtGui.QColor(255,255,0))
-            
-#            nordenf = self.tabla_fact.item(indexfb[0][0], 4)
-#            self.nordenf = nordenf.text()
-#            
+
             for i in indexfo:
                 nordenf = self.tabla_fact.item(i, 4)
                 self.nordenf = nordenf.text()
@@ -1940,7 +1825,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
                         self.nordenf = 'No existe el número de orden'
 
                     
-#            self.tabla_fact.scrollToItem(self.tabla_fact.selectRow(indexf[0][0]-1))
             
             idf = self.tabla_fact.item(indexfb[0][0], 16)
             self.idf = idf.text()
@@ -1971,19 +1855,12 @@ class Ui_MainWindow(QtWidgets.QWidget):
             
             terminof = self.tabla_fact.item(indexfb[0][0], 5)
             self.terminof = terminof.text()
-#            mrcf = self.tabla_fact.item(indexf[0][0]-1, 20)
-#            self.mrcf = mrcf.text()
-#            nrcb = self.tabla_fact.item(indexf[0][0]-1, 20)
             self.nrcf ='N/A'
-#            self.nrcb = nrcb.text()
             self.norden_fact.setText(self.nordenf)
             self.id_fact.setText(self.idf)
             self.termino_fact.setText(self.terminof)
             self.mrc_fact.setText(self.mrcsumf)
             self.nrc_fact.setText(self.nrcf)
-            
-            
-            
             
 # =============================================================================
 #             LABELS BASE
@@ -2001,14 +1878,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
             self.nordenb = nordenb.text()
             idb = self.tabla_base.item(indexb[0][0]-3, 0)
             self.idb = idb.text()
-            
-            
             operadorb = self.tabla_base.item(indexb[0][0]-3, 3)
             self.operadorb = operadorb.text()
-            
             lenstrb = len(self.operadorb)//2
             if lenstrb >15:
-                
                 font = QtGui.QFont()
                 font.setPointSize(8)
                 if self.operadorb[lenstrb] == ' ':
@@ -2022,20 +1895,14 @@ class Ui_MainWindow(QtWidgets.QWidget):
                     z1b,z2b= self.operadorb[:yb], self.operadorb[1+yb:]
                     self.prtb = z1b + '\n' + z2b
                     self.operador_base.setText(self.prtb)
-            
             else:
                 self.operador_base.setText(self.operadorb)
-            
-            
             
             terminob = self.tabla_base.item(indexb[0][0]-3, 16)
             self.terminob = terminob.text()
             mrcb = self.tabla_base.item(indexb[0][0]-3, 7)
-
             self.mrcb = mrcb.text()
-#            nrcb = self.tabla_fact.item(indexf[0][0]-1, 20)
             self.nrcb ='N/A'
-#            self.nrcb = nrcb.text()
             self.norden_base.setText(self.nordenb)
             self.id_base.setText(self.idb)
             self.termino_base.setText(self.terminob)
@@ -2043,7 +1910,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
             self.nrc_base.setText(self.nrcb)
             
         elif len(indexb) == 0:
-#            self.tabla_base.scrollToItem(self.tabla_base.selectRow(indexb[0][0]-1))
             self.norden_base.setText('Not Found')
             self.id_base.setText('')
             self.operador_base.setText('')
@@ -2057,17 +1923,11 @@ class Ui_MainWindow(QtWidgets.QWidget):
                     self.tabla_base.item(i-3,j).setBackground(QtGui.QColor(255,255,0))
             
             self.mrcsumb=0
-#            for i in range (len(indexb1)):
-#                self.mrcsumb = self.datab[indexb1[i]][8] + self.mrcsumb
-#            self.mrcsumb=str(self.mrcsumb)
-            
-#            for i in indexbo:
             nordenb = self.tabla_base.item(i-3, 2)
             self.nordenb = nordenb.text()
             idba = self.tabla_base.item(i-3, 0)
             self.idba = idba.text()
-#                print (self.idsf, self.idba)
-#                print (self.nordensf, self.nordenb)
+            
             if self.idsf == self.idba:
                 print("IDs Iguales")
                 print (self.idsf, self.idba)
@@ -2094,12 +1954,8 @@ class Ui_MainWindow(QtWidgets.QWidget):
                     self.nordenb = 'No existe el número de orden'
 
             self.tabla_base.scrollToItem(self.tabla_base.selectRow(indexb[0][0]-3))
-#            nordenb = self.tabla_base.item(indexb[0][0]-3, 3)
-#            self.nordenb = nordenb.text()
             idb = self.tabla_base.item(indexb[0][0]-3, 0)
             self.idb = idb.text()
-            
-            
             operadorb = self.tabla_base.item(indexb[0][0]-3, 3)
             self.operadorb = operadorb.text()
             
@@ -2126,30 +1982,12 @@ class Ui_MainWindow(QtWidgets.QWidget):
             
             terminob = self.tabla_base.item(indexb[0][0]-3, 16)
             self.terminob = terminob.text()
-#            mrcb = self.tabla_base.item(indexb[0][0]-3, 8)
-#            self.mrcb = mrcb.text()
-            
-#            nrcb = self.tabla_fact.item(indexf[0][0]-1, 20)
             self.nrcb ='N/A'
-#            self.nrcb = nrcb.text()
             self.norden_base.setText(self.nordenb)
             self.id_base.setText(self.idb)
             self.termino_base.setText(self.terminob)
             self.mrc_base.setText(str(self.mrcsumb))
             self.nrc_base.setText(str(self.nrcb))
-
-
-    """
-# =============================================================================
-# FILTRO POR REGIÓN
-# =============================================================================
-    """
-#    def fregional(self):
-#        print('test')
-#   
-#
-#    def fcolombia(self):
-#        print('test1')
 
         
 
@@ -2161,8 +1999,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         
     def selectsf(self):
         item = self.select_sf.currentText()
-        
-        
         if item == 'Nuevos Servicios':
                    
            indexsf= [i for i,x in enumerate(self.tabla_busquedasf) for j,y in enumerate(x) if y == 'New Service']
@@ -2324,10 +2160,8 @@ class Ui_MainWindow(QtWidgets.QWidget):
                 self.sf[l][m] = self.tabla_sf.item(l,m).text()
                 
         self.facturacion = np.empty((self.tabla_fact.rowCount(), self.tabla_fact.columnCount()), dtype=('U100'))
-#        print(self.tabla_fact.rowCount())
         for n in range(self.tabla_fact.rowCount()):
             for o in range(self.tabla_fact.columnCount()):
-#                print(self.tabla_fact.item(n,o).text())
                 self.facturacion[n][o] = self.tabla_fact.item(n,o).text()
                 
         self.correctos = np.empty((self.tabla_sf.rowCount(), self.tabla_sf.columnCount()), dtype=('U100'))
@@ -2342,31 +2176,22 @@ class Ui_MainWindow(QtWidgets.QWidget):
 
 
         for x in range (len(self.sf)):
-#        for x in range (3):
             for y in range (2):
                 id_sf = self.sf[x][12]
                 norden_sf = self.sf[x][11]
                 operador_sf = self.sf[x][5]
-#                order_sf = self.sf[x][4] #orden SF
                 indexsf= [i for i,x1 in enumerate(self.sf) for j,y1 in enumerate(x1) if y1 == id_sf]
-#                print('indexsf', indexsf)
                 mrc_sf = float(self.sf[x][22])
                 norden_igual_list=list()
                 norden_dif_list =list()
                 mrc_suma_fact=0
                 if len(indexsf) == 1: #hay un solo CID
-#                    print('un solo CID')
                     indexfb= [i for i,x2 in enumerate(self.facturacion) for j,y2 in enumerate(x2) if y2 == id_sf] #Busca CID en Facturación
-#                    print(indexfb)
                     
                     if len(indexfb) == 1: #un solo CID en Facturación
-#                        print('un CID en Facturación')
                         norden_f = self.facturacion[indexfb[0]][4]
                         mrc_f = float(self.facturacion[indexfb[0]][20])
-#                        print(norden_sf, norden_f)
-                        if norden_f == norden_sf:
-#                            print('norden igual')
-                            
+                        if norden_f == norden_sf:                            
                             if mrc_sf == mrc_f:
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                                     estado_sf = 'Active'
@@ -2391,9 +2216,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     correctos_y.append(''); correctos_y.append(''); correctos_y.append('');
                                     correctos.append(correctos_y) 
                                     correctos_y = []
-#                                    self.sf = np.delete(self.sf, (0), axis=0)
                             else:
-#                                print('Mrc distinto 1 id')
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                                     estado_sf = 'Active'
                                 elif self.sf[x][17] == 'Disconnection':
@@ -2414,13 +2237,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                     incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                     incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-    #                                print('Incorrectos', incorrectos_y)
                                     incorrectos.append(incorrectos_y)
-#                                    print(incorrectos)
                                     incorrectos_y = []
                                     
                         else:
-#                            print('norden distinto 1 orden')
                             if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                                 estado_sf = 'Active'
                             elif self.sf[x][17] == 'Disconnection':
@@ -2441,21 +2261,16 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                 incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                 incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                 incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-#                                print('Incorrectos', incorrectos_y)
                                 incorrectos.append(incorrectos_y)
-#                                    print(incorrectos)
                                 incorrectos_y = []
                             
                     elif len(indexfb)>1: #Mas de 1 CID en Facturación
-#                        print('mas de un CID en facturacion')
                         for z in indexfb:
                             norden_f =self.facturacion[z][4]
                             if norden_f == norden_sf:
                                 norden_igual_list.append(z)
-#                                print('Norden igual ', norden_igual_list)
                             else:
                                 norden_dif_list.append(z)
-#                                print(norden_dif_list)
                         if len(norden_igual_list) > 1:
                             for z in norden_igual_list:
                                 mrc_f=float(self.facturacion[z][20])
@@ -2505,14 +2320,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_suma_fact); incorrectos_y.append('USD')
                                     incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                     incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-    #                                print('Incorrectos', incorrectos_y)
                                     incorrectos.append(incorrectos_y)
-    #                                    print(incorrectos)
                                     incorrectos_y = []
                         elif len(norden_igual_list) == 1:
-#                            print('1 solo n orden igual')
                             mrc_f=float(self.facturacion[norden_igual_list[0]][20])
-#                            print('mrc f, sf ',mrc_f, mrc_sf)
                             if mrc_f == mrc_sf:
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                                     estado_sf = 'Active'
@@ -2558,9 +2369,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                     incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                     incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-    #                                print('Incorrectos', incorrectos_y)
                                     incorrectos.append(incorrectos_y)
-    #                                    print(incorrectos)
                                     incorrectos_y = []
                         elif len(norden_igual_list) == 0:
                             if len(norden_dif_list) >= 1:
@@ -2583,9 +2392,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                         incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                         incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                         incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-        #                                print('Incorrectos', incorrectos_y)
                                         incorrectos.append(incorrectos_y)
-        #                                    print(incorrectos)
                                         incorrectos_y = []
                             else:
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
@@ -2610,9 +2417,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                     incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                     incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-        #                            print('Incorrectos', incorrectos_y)
                                     incorrectos.append(incorrectos_y)
-        #                            print(correctos)
                                     incorrectos_y = [] 
                         
                         if len(norden_dif_list) >= 1:
@@ -2635,15 +2440,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                         incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                         incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                         incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-        #                                print('Incorrectos', incorrectos_y)
                                         incorrectos.append(incorrectos_y)
-        #                                    print(incorrectos)
                                         incorrectos_y = []
                         
-                        
-                        
                     elif len(indexfb) == 0:
-#                        print('CID Not Found')
                         if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                             estado_sf = 'Active'
                         elif self.sf[x][17] == 'Disconnection':
@@ -2666,19 +2466,15 @@ class Ui_MainWindow(QtWidgets.QWidget):
                             incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                             incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                             incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-#                            print('Incorrectos', incorrectos_y)
                             incorrectos.append(incorrectos_y)
-#                            print(correctos)
                             incorrectos_y = []
                         
                 elif len(indexsf) > 1: #Mas de un CID SF
-#                    print('mas de 1 CID')
                     fecha_max = 0
                     mrc_suma_sf = 0
                     nrc_suma_sf = 0
                     for z in indexsf:
                         fechastr = str(self.sf[z][10])
-#                        print('date', fechastr)
                         fechastamp = int(datetime.datetime.strptime(fechastr, '%d/%m/%Y').timestamp())
                         if fechastamp > fecha_max:
                             fecha_max= fechastamp
@@ -2688,9 +2484,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                     fecha_max_str = datetime.datetime.utcfromtimestamp(fecha_max).strftime('%d/%m/%Y')
                     bw_sf=0
                     for z in index_fecha:
-#                        print(id_sf, self.sf[z][12])
                         if id_sf ==  self.sf[z][12]:
-#                            print(self.sf[z][10],fecha_max_str)
                             if norden_sf == self.sf[z][11]:
                                 if self.sf[z][10] == fecha_max_str:
                                     valor = float(self.sf[z][22])
@@ -2701,9 +2495,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                         
                                     if valorbw>bw_sf:
                                         bw_sf=valorbw
-#                                    print(valor)
                                     mrc_suma_sf = valor + mrc_suma_sf 
-#                                    print(mrc_suma_sf)
                                     nrc_sf= float(self.sf[z][24])
                                     if nrc_sf != 0:
                                         nrc_suma_sf = nrc_suma_sf + nrc_sf
@@ -2713,7 +2505,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                             nrc_sf = float(0)
                     
                     indexfb= [i for i,x2 in enumerate(self.facturacion) for j,y2 in enumerate(x2) if y2 == id_sf] #Busca CID en Facturación
-#                    print(indexfb)
                     if len(indexfb) == 1: #un solo CID en Facturación
                         norden_f = self.facturacion[indexfb[0]][4]
                         mrc_f = float(self.facturacion[indexfb[0]][20])
@@ -2730,7 +2521,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     pais_f = self.facturacion[indexfb[0]][22]
                                     bw_f = self.facturacion[indexfb[0]][34]
                                     mrc_dif = abs(mrc_f-mrc_suma_sf)
-#                                    print(mrc_f, '-', mrc_suma_sf, '= ', mrc_dif)
                                     termino = float(self.sf[x][30])
                                     term_s = termino * 30*24*60*60
                                     fecha_inicio = self.sf[x][10]
@@ -2764,9 +2554,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                     incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_suma_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                     incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-    #                                print('Incorrectos', incorrectos_y)
                                     incorrectos.append(incorrectos_y)
-    #                                    print(incorrectos)
                                     incorrectos_y = []
                         else:
                             if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
@@ -2789,25 +2577,20 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                 incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                 incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                 incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-#                                print('Incorrectos', incorrectos_y)
                                 incorrectos.append(incorrectos_y)
-#                                    print(incorrectos)
                                 incorrectos_y = []
                             
                     elif len(indexfb)>1: #Mas de 1 CID en Facturación
                         for z in indexfb:
                             norden_f =self.facturacion[z][4]
-#                            print('norden f, sf', norden_f, norden_sf)
                             if norden_f == norden_sf:
                                 norden_igual_list.append(z)
                             else:
                                 norden_dif_list.append(z)
-#                        print('norden igual lista', norden_igual_list)
                         if len(norden_igual_list) > 1:
                             for z in norden_igual_list:
                                 mrc_f=float(self.facturacion[z][20])
                                 mrc_suma_fact =mrc_f+mrc_suma_fact
-#                            print('mrc fact, sf', mrc_suma_fact,mrc_suma_sf)
                             if mrc_suma_fact == mrc_suma_sf:
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                                     estado_sf = 'Active'
@@ -2854,14 +2637,11 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_suma_fact); incorrectos_y.append('USD')
                                     incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_suma_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                     incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-    #                                print('Incorrectos', incorrectos_y)
                                     incorrectos.append(incorrectos_y)
                                     incorrectos_y = []
                         elif len(norden_igual_list) == 1:
                             mrc_f=float(self.facturacion[norden_igual_list[0]][20])
-#                            print('mrc f, sf ',mrc_f, mrc_suma_sf)
                             if mrc_f == mrc_suma_sf:
-#                                print('mrc f, sf ',mrc_f, mrc_suma_sf)
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                                     estado_sf = 'Active'
                                 elif self.sf[x][17] == 'Disconnection':
@@ -2886,7 +2666,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     correctos.append(correctos_y) 
                                     correctos_y = []
                                 
-                                
                             else:
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                                     estado_sf = 'Active'
@@ -2908,7 +2687,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                     incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_suma_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                     incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-    #                                print('Incorrectos', incorrectos_y)
                                     incorrectos.append(incorrectos_y)
                                     incorrectos_y = []
                                 
@@ -2937,9 +2715,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                         incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                         incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                         incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-        #                                print('Incorrectos', incorrectos_y)
                                         incorrectos.append(incorrectos_y)
-        #                                    print(incorrectos)
                                         incorrectos_y = []
                             else:
                                 if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
@@ -2964,9 +2740,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                     incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                     incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-        #                            print('Incorrectos', incorrectos_y)
                                     incorrectos.append(incorrectos_y)
-        #                            print(correctos)
                                     incorrectos_y = [] 
                         
                         
@@ -2991,13 +2765,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
                                     incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                                     incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                                     incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-    #                                print('Incorrectos', incorrectos_y)
                                     incorrectos.append(incorrectos_y)
-    #                                    print(incorrectos)
                                     incorrectos_y = []
                     
                     elif len(indexfb) == 0:
-#                        print('C1ID Not Found')
                         if self.sf[x][17] == 'New Service' or self.sf[x][17] ==  'Renewal' or self.sf[x][17] == 'Reconfiguration' or self.sf[x][17] == 'Upgrade' or self.sf[x][17] == 'Downgrade' or self.sf[x][17] == 'Migration':
                             estado_sf = 'Active'
                         elif self.sf[x][17] == 'Disconnection':
@@ -3020,9 +2791,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                             incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                             incorrectos_y.append(self.sf[x][15]); incorrectos_y.append(self.sf[x][28]); incorrectos_y.append(mrc_sf); incorrectos_y.append(self.sf[x][21]); incorrectos_y.append(estado_sf)
                             incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-#                            print('Incorrectos', incorrectos_y)
                             incorrectos.append(incorrectos_y)
-#                            print(correctos)
                             incorrectos_y = []
         
         for x in range (len(self.facturacion)):
@@ -3054,9 +2823,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
                 incorrectos_y.append(pais_f); incorrectos_y.append(estado_f); incorrectos_y.append(bw_f); incorrectos_y.append(mrc_f); incorrectos_y.append('USD')
                 incorrectos_y.append(pais_sf); incorrectos_y.append(bw_sf); incorrectos_y.append(mrc_sf); incorrectos_y.append(currency_sf); incorrectos_y.append(estado_sf)
                 incorrectos_y.append(mrc_dif); incorrectos_y.append(fecha_inicio); incorrectos_y.append(termino); incorrectos_y.append(fecha_fin)
-    #                            print('Incorrectos', incorrectos_y)
                 incorrectos.append(incorrectos_y)
-    #                            print(correctos)
                 incorrectos_y = []
            
         repetidos=[]            
@@ -3099,13 +2866,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         for i in repetidos_i[::-1]:
             incorrectos.pop(i)                        
         
-        
-            
-              
-#        self.pop2 = PopUp_Correctos()
-#        self.pop2.setObjectName("Correctos")
-#        self.pop2.show()
-        
         self.pop3 = PopUp_Incorrectos()
         self.pop3.setObjectName("Incorrectos")
         self.pop3.show()
@@ -3117,12 +2877,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.base = np.empty((self.tabla_base.rowCount(), self.tabla_base.columnCount()), dtype=('U100'))
         for n in range(self.tabla_base.rowCount()):
             for o in range(self.tabla_base.columnCount()):
-#                print(self.tabla_fact.item(n,o).text())
                 self.base[n][o] = self.tabla_base.item(n,o).text()
         
         global base
         base = self.base.tolist()
-#        print(base)
         
         for i in range(len(correctos)):
             base.append(correctos[i])
@@ -3138,7 +2896,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
                 self.tabla_base.setItem(i,j, nvalor)
         self.tabla_base.resizeColumnsToContents()
         
-#        self.openWindow1()
         
         
     """
@@ -3158,7 +2915,6 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.sheet = wbk.add_sheet("sheet", cell_overwrite_ok=True)
         style = xlwt.XFStyle()
         font = xlwt.Font()
-#        self.exp_base_2()
         font.bold =True
         style.font = font
         self.sheet.write(0, 0, 'ID', style=style); self.sheet.write(0, 1, 'GP', style=style);self.sheet.write(0, 2, '# Order', style=style); self.sheet.write(0, 3, 'Operador', style=style)
@@ -3173,12 +2929,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
         for i in range(len(base)):
             for j in range(len(base[0])):
                 text = str(base[i][j])
-#                print(i,j)
                 self.sheet.write(l, j, text)
             l=l+1
         
         wbk.save(filename[0])
-#        self.openW2()
         
     def openW2(self):
         filename = QtWidgets.QFileDialog.getSaveFileName(self, 'Guardar Incorrectos', '', ".xls(*.xls)")
@@ -3283,61 +3037,8 @@ class MyPopup(QtWidgets.QWidget):
         ui.statusbar.showMessage('Periodo seleccionado: %i/%i' %(date_select.month, date_select.year))
         self.close()
         return date_select
-    
-#class PopUp_Correctos(QtWidgets.QWidget):
-#    def __init__(self):
-#        QtWidgets.QWidget.__init__(self)
-#        import RAP_rc
-#        icon = QtGui.QIcon()
-#        icon.addPixmap(QtGui.QPixmap(":/Register/logo2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-#        self.setWindowIcon(icon)
-#        self.setFixedSize(963, 700)
-#        self.setWindowTitle('Correctos')
-#        self.centralwidget = QtWidgets.QWidget(self)
-#        self.centralwidget.setObjectName("centralwidget")
-#        self.widget = QtWidgets.QWidget(self.centralwidget)
-#        self.widget.setGeometry(QtCore.QRect(0, 0, 961, 681))
-#        self.widget.setObjectName("widget")
-#        self.gridLayout = QtWidgets.QGridLayout(self.widget)
-#        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-#        self.gridLayout.setObjectName("gridLayout")
-#        self.scrollArea = QtWidgets.QScrollArea(self.widget)
-#        self.scrollArea.setWidgetResizable(True)
-#        self.scrollArea.setFrameShape(QtWidgets.QFrame.NoFrame)
-#        self.scrollArea.setObjectName("scrollArea")
-#        self.scrollAreaWidgetContents = QtWidgets.QWidget()
-#        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 957, 642))
-#        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-#        self.tableWidget = QtWidgets.QTableWidget(self.scrollAreaWidgetContents)
-#        self.tableWidget.setGeometry(QtCore.QRect(0, 0, 961, 621))
-#        self.tableWidget.setObjectName("tableWidget")
-#        self.tableWidget.setColumnCount(0)
-#        self.tableWidget.setRowCount(0)
-#        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-#        self.gridLayout.addWidget(self.scrollArea, 0, 0, 1, 1)
-#        self.pushButton = QtWidgets.QPushButton(self.widget)
-#        self.pushButton.setMinimumSize(QtCore.QSize(93, 28))
-#        self.pushButton.setMaximumSize(QtCore.QSize(93, 28))
-##        self.pushButton.setObjectName("pushButton")
-#        self.pushButton.setText('OK')
-#        self.gridLayout.addWidget(self.pushButton, 1, 0, 1, 1)
-#        if len(correctos)>0:
-#            num_row = len(correctos)
-#            num_col = len(correctos[0])
-#            self.tableWidget.setRowCount(num_row)
-#            self.tableWidget.setColumnCount(num_col)
-#            self.header = self.tableWidget.horizontalHeader()
-#            self.tableWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-#            for i in range(num_row):
-#                for j in range(num_col):
-#                    header=['R', 'ID','GP', '# Order','Operador', 'Pais', 'Estado', 'BW', 'MRC', 'Currency', 'Pais', 'BW', 'MRC', 'Currency', 'Estado','Pais Z','Direccion Z','Estado Servicio','BW','','', 'Diferencia', 'Fecha Inicio', 'Termino', 'Fecha Fin', 'Aplica tercero','ID tercero','Valor Tercero']
-#                    self.tableWidget.setHorizontalHeaderItem(j, QtWidgets.QTableWidgetItem(header[j]))
-#                    valor = str(correctos[i][j])
-#                    nvalor = QtWidgets.QTableWidgetItem(valor)
-#                    self.tableWidget.setItem(i,j, nvalor)
-#            self.tableWidget.resizeColumnsToContents()
         
-
+    
 class PopUp_Incorrectos(QtWidgets.QWidget):
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
@@ -3372,7 +3073,6 @@ class PopUp_Incorrectos(QtWidgets.QWidget):
         self.pushButton = QtWidgets.QPushButton(self.widget)
         self.pushButton.setMinimumSize(QtCore.QSize(93, 28))
         self.pushButton.setMaximumSize(QtCore.QSize(93, 28))
-#        self.pushButton.setObjectName("pushButton")
         self.pushButton.setText('Exportar')
         self.gridLayout.addWidget(self.pushButton, 1, 0, 1, 1)
         if len(incorrectos)> 0:
@@ -3427,4 +3127,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
